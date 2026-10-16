@@ -99,9 +99,17 @@ int main(int argc, char *argv[]) {
     if (pthread_create(&t3, NULL, threadT3, NULL) != 0) 
         erreur("Echec pthread_create T3", 4);
 
-    pthread_join(t1, NULL);
-    pthread_join(t2, NULL);
-    pthread_join(t3, NULL);
+    int code = 0;
+    code = pthread_join(t1, NULL);
+    if(code != 0)
+        erreur("Echec pthread_join T1", 5);
+
+    code = pthread_join(t2, NULL);
+    if (code != 0) 
+        erreur("Echec pthread_join T2", 6);
+    code =pthread_join(t3, NULL);
+    if (code != 0) 
+        erreur("Echec pthread_join T3", 7);
 
     return 0;
 }
